@@ -16,3 +16,27 @@ stages:
       hash: md5
       md5: 25d4d0b21083f3011eeae447572b3682
       size: 4508508
+  data_preparation:
+    cmd: python src/data/data_preparation.py
+    deps:
+    - path: data/cleaned/swiggy_cleaned.csv
+      hash: md5
+      md5: 25d4d0b21083f3011eeae447572b3682
+      size: 4508508
+    - path: src/data/data_preparation.py
+      hash: md5
+      md5: 545f6ce3b6ec2ffe1b3c33678dd19c07
+      size: 3009
+    params:
+      params.yaml:
+        Data_Preparation.random_state: 42
+        Data_Preparation.test_size: 0.2
+    outs:
+    - path: data/interim/test.csv
+      hash: md5
+      md5: eae5bb702f142aaa10d423b1ffa23e55
+      size: 901132
+    - path: data/interim/train.csv
+      hash: md5
+      md5: a3f29a92d76990badf5d65aa6e14a9e7
+      size: 3604418
