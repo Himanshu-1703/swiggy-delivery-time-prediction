@@ -203,3 +203,5 @@ wrapt==1.17.0
 yarl==1.18.0
 zc.lockfile==3.0.post1
 zipp==3.21.0
+pytest
+requests
