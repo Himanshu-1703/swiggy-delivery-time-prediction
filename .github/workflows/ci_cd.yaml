@@ -1,0 +1,48 @@
+name: CI-CD
+
+on: push
+
+jobs:
+  Testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip' 
+
+      - name: Install Packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: DVC Pull
+        run: |
+          dvc pull
+
+      - name: Test Model Registry
+        env:
+          DAGSHUB_USER_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+        run: |
+          pytest tests/test_model_registry.py
+
+      - name: Test Model Performance
+        env:
+          DAGSHUB_USER_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+        run: |
+          pytest tests/test_model_perf.py
+
+      - name: Promote Model
+        if: success()
+        env:
+          DAGSHUB_USER_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+        run: |
+          python scripts/promote_model_to_prod.py
+
+
+
+  
