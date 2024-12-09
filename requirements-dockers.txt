@@ -50,14 +50,6 @@ dnspython==2.7.0
 docker==7.1.0
 dpath==2.2.0
 dulwich==0.22.6
-dvc==3.57.0
-dvc-data==3.16.7
-dvc-http==2.32.0
-dvc-objects==5.1.0
-dvc-render==1.0.2
-dvc-s3==3.2.0
-dvc-studio-client==0.21.0
-dvc-task==0.40.2
 email_validator==2.2.0
 entrypoints==0.4
 executing==2.1.0
