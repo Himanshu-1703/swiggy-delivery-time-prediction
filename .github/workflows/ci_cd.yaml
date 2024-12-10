@@ -3,7 +3,7 @@ name: CI-CD
 on: push
 
 jobs:
-  Testing:
+  CI-CD:
     runs-on: ubuntu-latest
     steps:
       - name: Code Checkout
@@ -49,11 +49,8 @@ jobs:
           DAGSHUB_USER_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
         run: |
           python scripts/promote_model_to_prod.py
+          
 
-  Build_and_Push_to_ECR:
-    runs-on: ubuntu-latest
-    needs: Testing
-    steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
