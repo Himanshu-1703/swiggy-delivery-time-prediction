@@ -1,5 +1,5 @@
 Data_Preparation:
-  test_size: 0.25
+  test_size: 0.2
   random_state: 42
 
 Train:
