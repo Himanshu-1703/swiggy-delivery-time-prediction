@@ -7,7 +7,7 @@ root_path = Path(__file__).parent.parent
 data_path = root_path / "data" / "raw" / "swiggy.csv"
 
 # prediction endpoint
-predict_url = "http://localhost:8000/predict"
+predict_url = "http://13.201.83.141//predict"
 
 # sample row for testing the endpoint
 sample_row = pd.read_csv(data_path).dropna().sample(1)
@@ -15,6 +15,7 @@ print("The target value is", sample_row.iloc[:,-1].values.item().replace("(min) 
     
 # remove the target column
 data = sample_row.drop(columns=[sample_row.columns.tolist()[-1]]).squeeze().to_dict()
+print(data)
 
 # get the response from API
 response = requests.post(url=predict_url,json=data)
